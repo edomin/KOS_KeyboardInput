@@ -1,0 +1,34 @@
+C-language keyboard input library for KolibriOS.
+
+Building:
+1. Open Makefile and change TOOLCHAIN variable (1st string) to path to kos32 
+   toolchain in your system.
+2. You need MSYS. Get it if you have not it. Open MSYS, move to 
+   KOS_KeyboardInput folder and type:
+    make
+For rebuild library type:
+    make clean
+    make
+    
+Usage:
+Use header "kos_ki.h" and lib "libkos_ki.a" for attach library to your project
+
+Header overview:
+int KeyboardInit(void) - library initialization. Returns 0 on success.
+void KeyboardQuit(void)  - must be called for freeing keys' structures.
+void KeyboardKeystatesRefresh(void) - must be called every program loop cycle 
+  before checking keys' presses.
+bool KeyboardKeyPress(uint8_t key) - return true if key was pressed
+bool KeyboardKeyRelease(uint8_t key) - return true if key was released
+bool KeyboardKeyPressed(uint8_t key) - return true if key pressed now
+There is KOS_KEY_<KEYNAME> constants - KOS_KEY_A, KOS_KEY_B, KOS_KEY_CAPSLOCK 
+etc. Watch header for full list. That constant names uses in 
+functions where is "uint8_t key" argument.
+
+Copying:
+#. Source code of the library (except "include/bool.h") released to public 
+   domain (read "UNLICENSE" file). Author - me.
+#. Header file for boolean types "include/bool.h" are under LGPL 2.1 (read
+   "doc/LGPL-2.1.txt"). Author - Benedict W. Hazel.
+
+I am sorry for my English.
